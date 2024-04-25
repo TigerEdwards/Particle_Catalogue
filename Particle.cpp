@@ -19,6 +19,10 @@ double Particle::get_rest_mass() const
   return rest_mass;
 }
 
+bool Particle::get_anti_state() const
+{
+  return is_antiparticle;
+}
 void Particle::print_summary() const 
 {
     std::cout << "Mass: " << rest_mass
@@ -50,3 +54,4 @@ double operator*(const Particle& one, const Particle& two) {
                one.four_momentum->get_pz() * two.four_momentum->get_pz();
     return product;
 }
+

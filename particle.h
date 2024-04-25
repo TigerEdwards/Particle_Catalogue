@@ -16,7 +16,7 @@ protected:
     std::unique_ptr<fourMomentum> four_momentum;
 public:
     // Constructor that initializes the fourMomentum as well
-    Particle(double mass, double charge, double spin, double E, double px, double py, double pz, bool anti = false);
+    Particle(double charge, double spin, double E, double px, double py, double pz, bool anti = false);
         
     // Destructor
     virtual ~Particle(); 
@@ -45,6 +45,7 @@ public:
     virtual void print_summary() const;
     static double calculate_rest_mass(double E, double px, double py, double pz);
     double get_rest_mass() const;
+    bool get_anti_state() const;
     friend fourMomentum operator+(const Particle& one, const Particle& two);
     friend double operator*(const Particle& one, const Particle& two);
 };
