@@ -50,3 +50,31 @@ void muon::print_summary() const
 
 tau::tau(double E, double p_x, double p_y, double p_z, bool anti)
 : Lepton(anti ? 1.0 : -1.0, 0.5, E, p_x, p_y, p_z, anti ? -1.0 : 1.0, anti){}
+
+void tau::decay(int mode) 
+{
+// Clear previous decay products
+decay_products.clear();
+
+if(mode == 0) 
+{
+  decay_products.push_back(std::make_shared<electron>(0.5, 0.1, 0.1, 0.1, true));
+  decay_products.push_back(std::make_shared<electronNeutrino>(0.25, 0.05, 0.05, 0.05, false, true));
+  decay_products.push_back(std::make_shared<tauNeutrino>(0.25, 0.05, 0.05, 0.05,true, false));
+  decay_flag = "Tau decayed leptonically into electron and neutrinos."; 
+} 
+else if(mode == 1) 
+{  
+  decay_products.push_back(std::make_shared<muon>(0.5, 0.1, 0.1, 0.1,false));
+  decay_products.push_back(std::make_shared<tauNeutrino>(0.25, 0.05, 0.05, 0.05,false, false));
+  decay_flag ="Tau decayed leptonically into muon and neutrinos.";
+} 
+else if(mode == 2) 
+{
+  decay_flag ="Tau decayed hadronically.";
+} 
+else 
+{
+  decay_flag ="Invalid decay mode selected.";
+}
+}
